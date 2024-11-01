@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>“Hasil Tes Junior Fullstack Web Developer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0-rc/dist/css/adminlte.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <div class="register-logo mt-5">
+            <img src="img/Logo.png" alt="logo" width="200" height="100">
+        </div>
+        <div class="card">
+            <div class="card-body register-card-body">
+                <p class="login-box-msg text-lg">Apply Lamaran</p>
+                <form id="applicationForm">
+                    <div class="form-group">
+                        <label for="namaLengkap">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="namaLengkap" name="namaLengkap" required placeholder="Nama Lengkap">
+                    </div>
+                    <div class="form-group">
+                        <label for="jobTitle">Jabatan</label>
+                        <select class="form-control select2" id="jobTitle" name="jobTitle" required>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="telepon">Telepon</label>
+                        <input type="tel" class="form-control" id="telepon" name="telepon" required placeholder="cth = 08xxxxxxxx">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required placeholder="email@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="tahunLahir">Tahun Lahir</label>
+                        <input type="Select" class="form-control" id="tahunLahir" name="tahunLahir" required placeholder="Pilih Tahun Lahir">
+                    </div>
+                    <div class="form-group">
+                        <label for="skillSet">Skill Set</label>
+                        <select class="form-control select2" id="skillSet" name="skillSet" multiple="multiple"
+                            required>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-danger btn-block">Apply</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

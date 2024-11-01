@@ -1,0 +1,1080 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Dokumentasi API",
+        "description": "Dokumentasi API v1.0.0",
+        "contact": {
+            "email": "prasdimasetyo@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/api/candidates": {
+            "get": {
+                "tags": [
+                    "Candidates"
+                ],
+                "summary": "Get all candidates",
+                "operationId": "c9b0e1a5e84add97746106caab9aba4f",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": [
+                                    {
+                                        "id": 1,
+                                        "name": "John Doe",
+                                        "email": "john@example.com",
+                                        "phone": "123456789",
+                                        "year": 2022,
+                                        "skillSets": [
+                                            {
+                                                "id": 1,
+                                                "skill_id": 1
+                                            }
+                                        ],
+                                        "job": {
+                                            "id": 1,
+                                            "title": "Software Engineer"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Candidates"
+                ],
+                "summary": "Create a new candidate",
+                "operationId": "1d1be0fe568ca68caf7ff18e64fd95ae",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "job_id": 1,
+                                "name": "John Doe",
+                                "email": "john@example.com",
+                                "phone": "123456789",
+                                "year": 2022,
+                                "skill_sets": [
+                                    {
+                                        "skill_id": 1
+                                    },
+                                    {
+                                        "skill_id": 2
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Email or phone number is already associated with another candidate"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/candidates/{id}": {
+            "get": {
+                "tags": [
+                    "Candidates"
+                ],
+                "summary": "Get a candidate by ID",
+                "operationId": "48ec1724e465413589ad707a5b4df1cd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Candidate ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "id": 1,
+                                    "name": "John Doe",
+                                    "email": "john@example.com",
+                                    "phone": "123456789",
+                                    "year": 2022,
+                                    "skillSets": [
+                                        {
+                                            "id": 1,
+                                            "skill_id": 1
+                                        }
+                                    ],
+                                    "job": {
+                                        "id": 1,
+                                        "title": "Software Engineer"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Candidate not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Candidate not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Candidates"
+                ],
+                "summary": "Update a candidate by ID",
+                "operationId": "1661cc5296116c63161ca2bf67c33a4d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Candidate ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "job_id": 1,
+                                "name": "Updated John Doe",
+                                "email": "updated-john@example.com",
+                                "phone": "987654321",
+                                "year": 2023,
+                                "skill_sets": [
+                                    {
+                                        "skill_id": 2
+                                    },
+                                    {
+                                        "skill_id": 3
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Candidate updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "id": 1,
+                                    "name": "Updated John Doe",
+                                    "email": "updated-john@example.com",
+                                    "phone": "987654321",
+                                    "year": 2023,
+                                    "skillSets": [
+                                        {
+                                            "id": 2,
+                                            "skill_id": 2
+                                        },
+                                        {
+                                            "id": 3,
+                                            "skill_id": 3
+                                        }
+                                    ],
+                                    "job": {
+                                        "id": 1,
+                                        "title": "Software Engineer"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Candidate not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Candidate not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Candidates"
+                ],
+                "summary": "Delete a candidate by ID",
+                "operationId": "556f8beb59b9cbd6cd49038d8d50ab19",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Candidate ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Candidate deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Candidate deleted"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Candidate not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Candidate not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/jobs": {
+            "get": {
+                "tags": [
+                    "Jobs"
+                ],
+                "summary": "Get a list of all jobs",
+                "operationId": "9538d30d530d4c3680ea31fe228944e2",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": [
+                                    {
+                                        "id": 1,
+                                        "name": "Frontend Web Developer",
+                                        "created_by": null,
+                                        "created_at": "2024-02-20T14:52:29.000000Z",
+                                        "updated_by": null,
+                                        "updated_at": "2024-02-20T14:52:29.000000Z",
+                                        "deleted_by": null,
+                                        "deleted_at": null,
+                                        "candidates": []
+                                    },
+                                    {
+                                        "id": 2,
+                                        "name": "Fullstack Web Developer",
+                                        "created_by": null,
+                                        "created_at": "2024-02-20T14:52:29.000000Z",
+                                        "updated_by": null,
+                                        "updated_at": "2024-02-20T14:52:29.000000Z",
+                                        "deleted_by": null,
+                                        "deleted_at": null,
+                                        "candidates": []
+                                    },
+                                    {
+                                        "id": 3,
+                                        "name": "Quality Control",
+                                        "created_by": null,
+                                        "created_at": "2024-02-20T14:52:29.000000Z",
+                                        "updated_by": null,
+                                        "updated_at": "2024-02-20T14:52:29.000000Z",
+                                        "deleted_by": null,
+                                        "deleted_at": null,
+                                        "candidates": []
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Jobs"
+                ],
+                "summary": "Create a new job",
+                "operationId": "36deb2a6480382cf8385911c10aeebf0",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "name": "New Job Title"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Job created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "job": {
+                                        "id": 2,
+                                        "name": "New Job Title"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "object",
+                                            "example": {
+                                                "name": [
+                                                    "The name field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/jobs/{id}": {
+            "get": {
+                "tags": [
+                    "Jobs"
+                ],
+                "summary": "Get job details by ID",
+                "operationId": "6de31489b41fa51255446ac2ad15b7fb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Job ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "id": 1,
+                                    "name": "Frontend Web Developer",
+                                    "created_by": null,
+                                    "created_at": "2024-02-20T14:52:29.000000Z",
+                                    "updated_by": null,
+                                    "updated_at": "2024-02-20T14:52:29.000000Z",
+                                    "deleted_by": null,
+                                    "deleted_at": null,
+                                    "candidates": []
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Job not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Job not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Jobs"
+                ],
+                "summary": "Update an existing job",
+                "operationId": "66762b778fbd20dd4fbd09628dabba17",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Job ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "name": "Updated Job Title"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Job updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "job": {
+                                        "id": 2,
+                                        "name": "Updated Job Title"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "object",
+                                            "example": {
+                                                "name": [
+                                                    "The name field must be a string."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Job not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Job not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Jobs"
+                ],
+                "summary": "Delete an existing job",
+                "operationId": "5537fd998abc3a62eef8c09e4ae52000",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Job ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Job deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Job deleted successfully"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Job not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Job not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/skills": {
+            "get": {
+                "tags": [
+                    "Skills"
+                ],
+                "summary": "Get a list of all skills",
+                "operationId": "6acb38b223d6471cc32eab45ea57be4b",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "skills": [
+                                        {
+                                            "id": 1,
+                                            "name": "Programming",
+                                            "created_by": null,
+                                            "created_at": "2024-02-20T14:52:29.000000Z",
+                                            "updated_by": null,
+                                            "updated_at": "2024-02-20T14:52:29.000000Z",
+                                            "deleted_by": null,
+                                            "deleted_at": null,
+                                            "skillSets": []
+                                        },
+                                        {
+                                            "id": 2,
+                                            "name": "Design",
+                                            "created_by": null,
+                                            "created_at": "2024-02-20T14:52:29.000000Z",
+                                            "updated_by": null,
+                                            "updated_at": "2024-02-20T14:52:29.000000Z",
+                                            "deleted_by": null,
+                                            "deleted_at": null,
+                                            "skillSets": []
+                                        },
+                                        {
+                                            "id": 3,
+                                            "name": "Testing",
+                                            "created_by": null,
+                                            "created_at": "2024-02-20T14:52:29.000000Z",
+                                            "updated_by": null,
+                                            "updated_at": "2024-02-20T14:52:29.000000Z",
+                                            "deleted_by": null,
+                                            "deleted_at": null,
+                                            "skillSets": []
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Skills not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Skills not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Skills"
+                ],
+                "summary": "Create a new skill",
+                "operationId": "4725cd560d3046ae33bd690208e21d41",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "New Skill"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Skill created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "skill": {
+                                        "id": 4,
+                                        "name": "New Skill",
+                                        "created_by": null,
+                                        "created_at": "2024-02-20T14:52:29.000000Z",
+                                        "updated_by": null,
+                                        "updated_at": "2024-02-20T14:52:29.000000Z",
+                                        "deleted_by": null,
+                                        "deleted_at": null,
+                                        "skillSets": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/skills/{id}": {
+            "get": {
+                "tags": [
+                    "Skills"
+                ],
+                "summary": "Get a skill by ID",
+                "operationId": "81b9cbc27bbdd8b5a6591975bf75441a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Skill ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "skill": {
+                                        "id": 1,
+                                        "name": "Programming",
+                                        "created_by": null,
+                                        "created_at": "2024-02-20T14:52:29.000000Z",
+                                        "updated_by": null,
+                                        "updated_at": "2024-02-20T14:52:29.000000Z",
+                                        "deleted_by": null,
+                                        "deleted_at": null,
+                                        "skillSets": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Skill not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Skill not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Skills"
+                ],
+                "summary": "Update a skill by ID",
+                "operationId": "6c932a7a6f40be346ab93e4dd28f14f2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Skill ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Updated Skill"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Skill updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "skill": {
+                                        "id": 4,
+                                        "name": "Updated Skill",
+                                        "created_by": null,
+                                        "created_at": "2024-02-20T14:52:29.000000Z",
+                                        "updated_by": null,
+                                        "updated_at": "2024-02-20T14:52:29.000000Z",
+                                        "deleted_by": null,
+                                        "deleted_at": null,
+                                        "skillSets": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Skill not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Skill not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Skills"
+                ],
+                "summary": "Delete a skill by ID",
+                "operationId": "7401a82a4b0de61e80c67901e89d62dd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Skill ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Skill deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Skill deleted successfully"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Skill not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Skill not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/skill-sets/": {
+            "get": {
+                "tags": [
+                    "SkillSets"
+                ],
+                "summary": "Get all skill sets",
+                "operationId": "c8e809d787d33adc98ca08ac1fb761fc",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": [
+                                    {
+                                        "candidate_id": 1,
+                                        "skill_id": 2,
+                                        "created_by": "2024-02-20T17:20:11.000000Z",
+                                        "created_at": null,
+                                        "updated_by": "2024-02-20T17:20:11.000000Z",
+                                        "updated_at": null,
+                                        "deleted_by": "2024-02-20T17:20:11.000000Z",
+                                        "deleted_at": null
+                                    },
+                                    {
+                                        "candidate_id": 2,
+                                        "skill_id": 1,
+                                        "created_by": null,
+                                        "created_at": "2024-02-20T18:31:17.000000Z",
+                                        "updated_by": null,
+                                        "updated_at": "2024-02-20T18:31:17.000000Z",
+                                        "deleted_by": null,
+                                        "deleted_at": null
+                                    },
+                                    {
+                                        "candidate_id": 2,
+                                        "skill_id": 2,
+                                        "created_by": null,
+                                        "created_at": "2024-02-20T18:31:17.000000Z",
+                                        "updated_by": null,
+                                        "updated_at": "2024-02-20T18:31:17.000000Z",
+                                        "deleted_by": null,
+                                        "deleted_at": null
+                                    },
+                                    {
+                                        "candidate_id": 3,
+                                        "skill_id": 1,
+                                        "created_by": null,
+                                        "created_at": "2024-02-21T00:23:05.000000Z",
+                                        "updated_by": null,
+                                        "updated_at": "2024-02-21T00:23:05.000000Z",
+                                        "deleted_by": null,
+                                        "deleted_at": null
+                                    },
+                                    {
+                                        "candidate_id": 3,
+                                        "skill_id": 2,
+                                        "created_by": null,
+                                        "created_at": "2024-02-21T00:23:05.000000Z",
+                                        "updated_by": null,
+                                        "updated_at": "2024-02-21T00:23:05.000000Z",
+                                        "deleted_by": null,
+                                        "deleted_at": null
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "SkillSet not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "SkillSet not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/skill-sets/{candidateId}/{skillId}": {
+            "get": {
+                "tags": [
+                    "SkillSets"
+                ],
+                "summary": "Get a skill set by candidate ID and skill ID",
+                "operationId": "2ee4c03eb40ae8276cb55325a9cac94c",
+                "parameters": [
+                    {
+                        "name": "candidateId",
+                        "in": "path",
+                        "description": "Candidate ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "skillId",
+                        "in": "path",
+                        "description": "Skill ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "data": {
+                                        "candidate_id": 1,
+                                        "skill_id": 2,
+                                        "created_by": "2024-02-20T17:20:11.000000Z",
+                                        "created_at": null,
+                                        "updated_by": "2024-02-20T17:20:11.000000Z",
+                                        "updated_at": null,
+                                        "deleted_by": "2024-02-20T17:20:11.000000Z",
+                                        "deleted_at": null
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "SkillSet not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "SkillSet not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Candidates",
+            "description": "API Endpoints for Candidates"
+        },
+        {
+            "name": "Jobs",
+            "description": "API Endpoints for Jobs"
+        },
+        {
+            "name": "Skills",
+            "description": "API Endpoints for Skills"
+        },
+        {
+            "name": "SkillSets",
+            "description": "API Endpoints for SkillSets"
+        }
+    ]
+}
